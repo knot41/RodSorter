@@ -1,0 +1,8 @@
+float64 x
+float64 y
+float64 rotate_angle
+float64 bias_x
+float64 bias_y
+---
+
+int32 result

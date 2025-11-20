@@ -1,0 +1,44 @@
+/**:
+  ros__parameters:
+    base_coordinate: "base"
+    sucker_coordinate: "sucker"
+    camera_coordinate: "camera"
+    tool_coordinate: "tool"
+    debug: false
+    tool2sucker_tran: [0.0, 0.0, 111.3 , 0.0 , 0.0, 0.0]
+
+/xarm_robot_node:
+  ros__parameters:
+    # 提前标定好的棋盘四个角点在基坐标系下的坐标,单位为mm
+    left_bot: [-91.84,267.13,37.02]
+    left_top: [-285.15,439.52,35.57]
+    right_bot: [29.58,400.17,35.37]
+    right_top: [-163.93,574.01,34.11]
+    reset_pose: [283.386, 50.1227, 560.711, 177.054, -0.765659, 93.37]  # 机械臂回正TCP位姿
+
+    reset_joint_pose: [ 23.2, 18.1, -118.4, 0, 100.3, 66.4, 0]   # 机械臂回正关节角度
+# 26.9, 15, -122.9, 0, 107.9, -64.1, 0
+    second_reset_pose: [ 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] # 第二次回正TCP位姿   
+    second_reset_joint_pose: [-29.7, 25.9, -128.1, 0, 102.2, 13.4, 0] # 第二次回正的关节角度 
+    # -28.3, 16.9, -125.1, 0, 108.2, -119.1, 0
+    using_joint: true  # 在使用reset时，是否要使用关节角度回正
+    reset_joint_pose_moving: [23.8893, -22.803, -46.7128, 0.751468, 69.4728, 109.733, 0 ]    # 在过程中机械臂暂时回正的关节角度(现在似乎并没有用上)
+    
+
+/tetris_node:
+  ros__parameters: 
+    phase: 1
+    modelPath: "./src/tetris/model/best.onnx"
+    binThreshold: 200
+    minRotatedrectArea: 4500
+    maxRotatedrectArea: 10000
+    confThreshold: 0.8
+    phase2totalcnt: 30
+
+
+
+/tf2_node:
+  ros__parameters:
+    # 工具坐标系到相机与吸盘的转换关系，tvec单位为mm，rvec单位为deg(tf里还要转)
+    tool2camera_tran: [-89.75, -52.25, 50.55 , 0.0 , 0.0, 0.0]
+    # tool2sucker_tran: [0.0, 0.0, 111.3 , 0.0 , 0.0, 0.0]
